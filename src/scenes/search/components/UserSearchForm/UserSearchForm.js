@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { Form } from "../../../components";
-import { octokit } from "../../../api";
+import { Form } from "components";
+import { octokit } from "api";
 
 class UserSearchForm extends Component {
   render() {
+    console.log(process.env.REACT_APP_NODE_PATH);
     const { handleSubmit, handleChange, disabled, error } = this.props;
     return (
       <Form onSubmit={handleSubmit}>
