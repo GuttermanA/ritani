@@ -20,21 +20,27 @@ class FormButton extends Component {
     disabled: false
   };
 
-  handleClick = event => {
-    const { disabled } = this.props;
-    if (disabled) {
-      event.preventDefault();
-      return;
-    }
-    this.props.handleClick && this.props.handleClick();
-  };
+  // handleClick = event => {
+  //   const { disabled } = this.props;
+  //   if (disabled) {
+  //     event.preventDefault();
+  //     return;
+  //   }
+  //   this.props.handleClick && this.props.handleClick();
+  // };
 
   render() {
     // const ElementType = getElementType(FormButton, this.props);
     const { children, className, type = "submit", name } = this.props;
     const { disabled } = this.state;
     return (
-      <button type className disabled autoFocus>
+      <button
+        name={name}
+        type={type}
+        className={className}
+        disabled={disabled}
+        autoFocus
+      >
         {children}
       </button>
     );

@@ -34,10 +34,10 @@ class Form extends Component {
 
   render() {
     // const ElementType = getElementType(Form, this.props);
-    const { action, children, className, handleSubmit, ...rest } = this.props;
+    const { action, children, className, onSubmit, ...rest } = this.props;
 
     return (
-      <form {...rest} action className onSumbit={handleSubmit}>
+      <form {...rest} action={action} className={className} onSubmit={onSubmit}>
         {children}
       </form>
     );
