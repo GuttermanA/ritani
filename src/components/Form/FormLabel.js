@@ -1,8 +1,10 @@
-import React from "react";
+import React, { Component } from "react";
 
-const FormLabel = props => {
-  const { children } = props;
-  return <label>{children}</label>;
-};
+class FormLabel extends Component {
+  render() {
+    const { children } = props;
+    return <label>{children}</label>;
+  }
+}
 
 export default FormLabel;

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import octokit from "../api";
+import { UserSearchForm } from "./components";
+import octokit from "../../api";
 
-export default class Search extends Component {
+class Search extends Component {
   state = {
     loading: false,
     username: "",
@@ -16,5 +17,13 @@ export default class Search extends Component {
     this.setState({ userData, username });
   }
 
-  render() {}
+  render() {
+    return (
+      <div>
+        <UserSearchForm />
+      </div>
+    );
+  }
 }
+
+export default Search;

@@ -1,8 +1,10 @@
-import React from "react";
+import React, { Component } from "react";
 
-const FormField = props => {
-  const { className, type, name, required, placeholder } = props;
-  return <input className type name required placeholder />;
-};
+class FormField extends Component {
+  render() {
+    const { className, type, name, required, placeholder } = this.props;
+    return <input className type name required placeholder />;
+  }
+}
 
 export default FormField;

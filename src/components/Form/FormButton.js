@@ -1,7 +1,21 @@
 import React, { Component } from "react";
-import getElementType from "../../../lib";
+import PropTypes from "prop-types";
+import getElementType from "../../lib";
 
 class FormButton extends Component {
+  static propTypes = {
+    as: PropTypes.elementType,
+    action: PropTypes.string,
+    children: PropTypes.node,
+    className: PropTypes.string,
+    disabled: PropTypes.bool,
+    onClick: PropTypes.func
+  };
+
+  static defaultProps = {
+    as: "button"
+  };
+
   handleClick = event => {
     const { disabled } = this.props;
     if (disabled) {
@@ -12,12 +26,12 @@ class FormButton extends Component {
   };
 
   render() {
-    const ElementType = getElementType(FormButton, props);
+    const ElementType = getElementType(FormButton, this.props);
     const { children, className, type = "submit", disabled } = this.props;
     return (
-      <input type className disabled autoFocus>
+      <button type className disabled autoFocus>
         {children}
-      </input>
+      </button>
     );
   }
 }

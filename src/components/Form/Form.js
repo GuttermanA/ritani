@@ -1,17 +1,30 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import FormButton from "./FormButton";
-import FormField from "./FormField";
-import FormLabel from "./FormLabel";
+// import FormField from "./FormField";
+// import FormLabel from "./FormLabel";
 
-export default class Form extends Component {
+class Form extends Component {
+  static propTypes = {
+    as: PropTypes.elementType,
+    action: PropTypes.string,
+    children: PropTypes.node,
+    className: PropTypes.string,
+    onSubmit: PropTypes.func
+  };
+
+  static defaultProps = {
+    as: "form"
+  };
+
   static Button = FormButton;
-  static Field = FormField;
-  static FormLabel = FormLabel;
+  // static Field = FormField;
+  // static FormLabel = FormLabel;
 
   state = {};
 
   handleSumbit = event => {
-    alter("SUBMITTED");
+    alert("SUBMITTED");
     event.preventDefault();
   };
 
@@ -20,6 +33,15 @@ export default class Form extends Component {
   };
 
   render() {
-    return <form onSumbit={this.handleSubmit}>{children}</form>;
+    // const ElementType = getElementType(Form, this.props);
+    const { action, children, className, ...rest } = this.props;
+
+    return (
+      <form {...rest} action className onSumbit={this.handleSubmit}>
+        {children}
+      </form>
+    );
   }
 }
+
+export default Form;
