@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { UserSearchForm } from "./components";
-import octokit from "../../api";
+import { octokit } from "../../api";
 
 class Search extends Component {
   state = {
@@ -10,9 +10,11 @@ class Search extends Component {
   };
 
   async fetchUserInfo({ username }) {
-    const userData = await octokit.users.getByUsername({
-      username
-    });
+    const userData = await octokit.users
+      .getByUsername({
+        username
+      })
+      .then(res => console.log(res));
 
     this.setState({ userData, username });
   }

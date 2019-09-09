@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import getElementType from "../../lib";
+// import getElementType from "../../lib";
 
 class FormButton extends Component {
   static propTypes = {
@@ -16,6 +16,10 @@ class FormButton extends Component {
     as: "button"
   };
 
+  state = {
+    disabled: false
+  };
+
   handleClick = event => {
     const { disabled } = this.props;
     if (disabled) {
@@ -26,8 +30,9 @@ class FormButton extends Component {
   };
 
   render() {
-    const ElementType = getElementType(FormButton, this.props);
-    const { children, className, type = "submit", disabled } = this.props;
+    // const ElementType = getElementType(FormButton, this.props);
+    const { children, className, type = "submit", name } = this.props;
+    const { disabled } = this.state;
     return (
       <button type className disabled autoFocus>
         {children}
