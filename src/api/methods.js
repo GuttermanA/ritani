@@ -1,6 +1,8 @@
 import octokit from "./octokit";
 
-const parseResponse = async response => {
+const handleResponse = async response => {
+  if (response.status !== 200) {
+  }
   try {
     const contentType = readContentType(response.headers);
     if (contentType.includes("text")) {
