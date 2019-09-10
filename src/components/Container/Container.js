@@ -3,7 +3,7 @@ import "./Container.css";
 
 class Container extends Component {
   render() {
-    const { className, children } = this.props;
+    const { className = "container", children } = this.props;
     return <div className={className}>{children}</div>;
   }
 }

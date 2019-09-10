@@ -1,7 +1,7 @@
 import Octokit from "@octokit/rest";
 
 const octokit = Octokit({
-  auth: "",
+  auth: `token ${process.env.PERSONAL_ACCESS_TOKEN}`,
   userAgent: "",
   baseUrl: "https://api.github.com",
   log: {
