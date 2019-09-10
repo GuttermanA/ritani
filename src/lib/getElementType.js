@@ -1,4 +1,4 @@
-const getElementType = (Component, props, getDefault) => {
+export const getElementType = (Component, props, getDefault) => {
   const { defaultProps = {} } = Component;
 
   // ----------------------------------------
@@ -24,5 +24,3 @@ const getElementType = (Component, props, getDefault) => {
 
   return defaultProps.as || "div";
 };
-
-export default getElementType;

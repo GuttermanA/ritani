@@ -1,4 +1,5 @@
-export { default } from "./getElementType";
+export { getElementType } from "./getElementType";
+export { getSearchParamValue } from "./getSearchParamValue";
 export {
   isObject,
   isObjectWithKeys,

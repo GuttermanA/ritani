@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { octokit } from "api";
 import { Search, FollowerList, UserInfo } from "scenes";
 import { Error, Button, Container } from "components";
-import { isObjectWithKeys } from "lib";
+import { isObjectWithKeys, getSearchParamValue } from "lib";
 import "./App.css";
 
 const followersPerPage = 30;
@@ -15,8 +15,13 @@ const calcRemaingingPages = (page, followers) => {
 const defaultState = {
   username: "",
   userData: {},
+  followers: {
+    data: {},
+    currentPage: 1,
+    lastPage: null
+  },
   followerData: {},
-  followerPage: 0,
+  followerPage: 1,
   disabled: false,
   error: {
     status: false,
@@ -33,7 +38,7 @@ class App extends Component {
       .getByUsername({
         username: this.state.username
       })
-      .then(res => this.setState({ ...this.state, userData: res.data }))
+      .then(res => this.setState({ userData: res.data }))
       .catch(error =>
         this.setState({
           ...this.state,
@@ -43,13 +48,22 @@ class App extends Component {
     // .finally(() => console.log(this.state));
   };
 
-  fetchFollowers = () => {
+  fetchFollowers = page => {
     octokit.users
       .listFollowersForUser({
         username: this.state.username,
-        page: this.state.followerPage
+        page: page || this.state.followerPage
       })
-      .then(res => this.setState({ ...this.state, followerData: res.data }))
+      .then(res =>
+        this.setState({
+          ...this.state,
+          followers: {
+            data: res.data,
+            currentPage: getSearchParamValue(res.url, page)
+          }
+        })
+      )
+      // .then(res => this.setState({ followerData: res.data }))
       .catch(error =>
         this.setState({
           ...this.state,
@@ -90,15 +104,9 @@ class App extends Component {
   };
 
   render() {
-    const {
-      userData,
-      followerData,
-      followerPage,
-      error,
-      disabled
-    } = this.state;
+    const { userData, followers, error, disabled } = this.state;
     const remainingPages = calcRemaingingPages(
-      followerPage,
+      followers.currentPage,
       userData.followers
     );
     return (
@@ -110,9 +118,9 @@ class App extends Component {
         />
         {error.status && <Error code={error.code} message={error.message} />}
         {isObjectWithKeys(userData) && <UserInfo userData={userData} />}
-        {followerData.length && (
+        {followers.data.length && (
           <FollowerList
-            followerData={followerData}
+            followerData={followers.data}
             remainingPages={remainingPages}
           />
         )}
