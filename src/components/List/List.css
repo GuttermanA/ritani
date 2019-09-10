@@ -5,3 +5,7 @@
 .list.horizontal {
   display: inline;
 }
+
+.list.none {
+  list-style: none;
+}
