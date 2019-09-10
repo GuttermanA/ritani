@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import styles from "./Container.css";
 
 class Container extends Component {
   render() {
-    return <div></div>;
+    const { className, children } = this.props;
+    return <div className={className}>{children}</div>;
   }
 }
 

@@ -1,0 +1,29 @@
+.container {
+  margin: 0 auto;
+  max-width: 75%;
+}
+
+.center.container {
+  text-align: center;
+  padding: 10px;
+}
+
+.header.container {
+  background-color: black;
+}
+
+/* .right.container {
+  text-align: right;
+}
+
+.left.container {
+  text-align: left;
+}
+
+.justified.container {
+  text-align: justify;
+}
+
+.fluid.container {
+  max-width: 100% !important;
+} */
