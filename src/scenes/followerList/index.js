@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { MouseOverAvatar } from "./components";
+import { MouseOverAvatar, LoadFollowersButton } from "./components";
 import { Container } from "components";
+import { Button } from "components";
 
 class FollowerList extends Component {
   render() {
-    const { followerData, children } = this.props;
+    const { followerData, children, remainingPages } = this.props;
     const followers = followerData.map(follower => {
       const { avatar_url, login, url, followers_url } = follower;
       return (
@@ -17,7 +18,12 @@ class FollowerList extends Component {
       );
     });
     return (
-      <Container className="fluid container">{followers || children}</Container>
+      <div>
+        <Container className="fluid container">{followers}</Container>
+        {followerData.length && (
+          <LoadFollowersButton remainingPages={remainingPages} />
+        )}
+      </div>
     );
   }
 }

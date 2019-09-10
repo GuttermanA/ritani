@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-// import getElementType from "../../lib";
-
+import "./Button.css";
 class Button extends Component {
   static propTypes = {
     as: PropTypes.elementType,

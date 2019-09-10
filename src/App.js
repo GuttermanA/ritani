@@ -1,15 +1,22 @@
 import React, { Component } from "react";
 import { octokit } from "api";
 import { Search, FollowerList, UserInfo } from "scenes";
-import { Error } from "components";
+import { Error, Button, Container } from "components";
 import { isObjectWithKeys } from "lib";
 import "./App.css";
+
+const followersPerPage = 30;
+
+const calcRemaingingPages = (page, followers) => {
+  const pagesRequired = Math.ceil(followers / followersPerPage);
+  return pagesRequired - page;
+};
 
 const defaultState = {
   username: "",
   userData: {},
   followerData: {},
-  followerPage: 1,
+  followerPage: 0,
   disabled: false,
   error: {
     status: false,
@@ -83,7 +90,17 @@ class App extends Component {
   };
 
   render() {
-    const { userData, followerData, error, disabled } = this.state;
+    const {
+      userData,
+      followerData,
+      followerPage,
+      error,
+      disabled
+    } = this.state;
+    const remainingPages = calcRemaingingPages(
+      followerPage,
+      userData.followers
+    );
     return (
       <div>
         <Search
@@ -93,7 +110,12 @@ class App extends Component {
         />
         {error.status && <Error code={error.code} message={error.message} />}
         {isObjectWithKeys(userData) && <UserInfo userData={userData} />}
-        {followerData.length && <FollowerList followerData={followerData} />}
+        {followerData.length && (
+          <FollowerList
+            followerData={followerData}
+            remainingPages={remainingPages}
+          />
+        )}
       </div>
     );
   }
