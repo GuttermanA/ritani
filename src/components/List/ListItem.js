@@ -2,8 +2,8 @@ import React, { Component } from "react";
 
 class ListItem extends Component {
   render() {
-    const { children } = this.props;
-    return <li>{children}</li>;
+    const { children, content } = this.props;
+    return <li>{content || children}</li>;
   }
 }
 
