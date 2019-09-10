@@ -17,11 +17,9 @@ const defaultState = {
   userData: {},
   followers: {
     data: {},
-    currentPage: 1,
+    page: 1,
     lastPage: null
   },
-  followerData: {},
-  followerPage: 1,
   disabled: false,
   error: {
     status: false,
@@ -52,17 +50,17 @@ class App extends Component {
     octokit.users
       .listFollowersForUser({
         username: this.state.username,
-        page: page || this.state.followerPage
+        page: page || this.state.followers.page
       })
-      .then(res =>
+      .then(res => {
         this.setState({
           ...this.state,
           followers: {
             data: res.data,
-            currentPage: getSearchParamValue(res.url, page)
+            page: getSearchParamValue(res.url, "page")
           }
-        })
-      )
+        });
+      })
       // .then(res => this.setState({ followerData: res.data }))
       .catch(error =>
         this.setState({
@@ -106,7 +104,7 @@ class App extends Component {
   render() {
     const { userData, followers, error, disabled } = this.state;
     const remainingPages = calcRemaingingPages(
-      followers.currentPage,
+      followers.page,
       userData.followers
     );
     return (
