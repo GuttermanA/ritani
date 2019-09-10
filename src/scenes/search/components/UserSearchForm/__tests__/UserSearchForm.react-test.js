@@ -8,4 +8,6 @@ describe("<UserSearchForm/>", () => {
     const component = render(<UserSearchForm />);
     expect(component).toMatchSnapshot();
   });
+
+  it(`it has a "Search" button`, () => {});
 });

@@ -11,11 +11,11 @@ describe("octokit rest", () => {
 
   test("Searching for an empty string throws a 404 not found error", async () => {
     expect(
-      Promise.reject(
+      Promise.resolve(
         octokit.users.getByUsername({
           username: ""
         })
       )
-    ).rejects.toThrow(/404/);
+    ).resolves.toBe(/404/);
   });
 });

@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="header fluid center container"
+        class="menu fluid center container"
       >
         <form
           as="form"
@@ -28,7 +28,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="header fluid center container"
+      class="menu fluid center container"
     >
       <form
         as="form"

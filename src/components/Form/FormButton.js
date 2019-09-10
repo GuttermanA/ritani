@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Button from "../Button";
-// import getElementType from "../../lib";
 
 class FormButton extends Component {
   static propTypes = {
@@ -16,15 +15,6 @@ class FormButton extends Component {
   static defaultProps = {
     as: "button"
   };
-
-  // handleClick = event => {
-  //   const { disabled } = this.props;
-  //   if (disabled) {
-  //     event.preventDefault();
-  //     return;
-  //   }
-  //   this.props.handleClick && this.props.handleClick();
-  // };
 
   render() {
     // const ElementType = getElementType(FormButton, this.props);

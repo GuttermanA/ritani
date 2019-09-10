@@ -5,11 +5,15 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <img />
+      <img
+        class="avatar"
+      />
     </div>
   </body>,
   "container": <div>
-    <img />
+    <img
+      class="avatar"
+    />
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

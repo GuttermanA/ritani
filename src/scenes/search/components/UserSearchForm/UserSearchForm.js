@@ -7,7 +7,6 @@ class UserSearchForm extends Component {
     return (
       <Container className="menu fluid center container">
         <Form onSubmit={handleSubmit}>
-          {error && "ERROR"}
           <Form.Field
             name="username"
             placeholder="Github Username"

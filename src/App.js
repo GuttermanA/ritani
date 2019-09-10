@@ -23,18 +23,20 @@ class App extends Component {
   state = defaultState;
 
   componentDidMount = () => {
-    octokit.users
-      .getByUsername({
-        username: this.state.username
-      })
-      .then(res => this.setState({ userData: res.data }))
-      .catch(error =>
-        this.setState({
-          ...this.state,
-          error: { status: true, code: error.status, message: error.message }
+    if (process.env.NODE_ENV === "development") {
+      octokit.users
+        .getByUsername({
+          username: this.state.username
         })
-      )
-      .finally(() => console.log(this.state));
+        .then(res => this.setState({ userData: res.data }))
+        .catch(error =>
+          this.setState({
+            ...this.state,
+            error: { status: true, code: error.status, message: error.message }
+          })
+        )
+        .finally(() => console.log(this.state));
+    }
   };
 
   handleSubmit = event => {

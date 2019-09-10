@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class FormLabel extends Component {
   render() {
-    const { children } = props;
+    const { children } = this.props;
     return <label>{children}</label>;
   }
 }
