@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { Form, Container } from "components";
-import { octokit } from "api";
 
 class UserSearchForm extends Component {
   render() {
-    console.log(process.env.REACT_APP_NODE_PATH);
     const { handleSubmit, handleChange, disabled, error } = this.props;
     return (
       <Container className="header fluid center container">

@@ -12,6 +12,10 @@
   background-color: black;
 }
 
+.fluid.container {
+  max-width: 100%;
+}
+
 /* .right.container {
   text-align: right;
 }
@@ -23,7 +27,4 @@
 .justified.container {
   text-align: justify;
 }
-
-.fluid.container {
-  max-width: 100% !important;
-} */
+*/

@@ -1,51 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<UserSearchForm/> renders correctly 1`] = `
+exports[`<List/> renders correctly 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
-        class="header fluid center container"
-      >
-        <form
-          as="form"
-        >
-          <input
-            name="username"
-            placeholder="Github Username"
-            required=""
-            type="text"
-          />
-          <button
-            type="submit"
-          >
-            Search
-          </button>
-        </form>
-      </div>
+      <ul />
     </div>
   </body>,
   "container": <div>
-    <div
-      class="header fluid center container"
-    >
-      <form
-        as="form"
-      >
-        <input
-          name="username"
-          placeholder="Github Username"
-          required=""
-          type="text"
-        />
-        <button
-          type="submit"
-        >
-          Search
-        </button>
-      </form>
-    </div>
+    <ul />
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

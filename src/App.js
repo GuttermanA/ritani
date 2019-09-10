@@ -1,10 +1,20 @@
-import React from "react";
-import { Search, FollowerList, UserInfo } from "scenes";
-import logo from "./logo.svg";
+import React, { Component } from "react";
+import {
+  Search,
+  // FollowerList,
+  UserInfo
+} from "scenes";
 import "./App.css";
 
-function App() {
-  return <Search />;
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <Search />
+        <UserInfo />
+      </div>
+    );
+  }
 }
 
 export default App;
