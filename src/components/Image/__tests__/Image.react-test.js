@@ -1,11 +1,11 @@
 import React from "react";
 import { cleanup, render } from "utils/test-utils";
-import Avatar from "../Avatar";
+import Image from "../Image";
 
-describe("<Avatar/>", () => {
+describe("<Image/>", () => {
   afterEach(cleanup);
   it("renders correctly", () => {
-    const component = render(<Avatar />);
+    const component = render(<Image />);
     expect(component).toMatchSnapshot();
   });
 });

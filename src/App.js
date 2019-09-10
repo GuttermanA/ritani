@@ -6,10 +6,11 @@ import {
   UserInfo
 } from "scenes";
 import { Error } from "components";
+import { isObjectWithKeys } from "lib";
 import "./App.css";
 
 const defaultState = {
-  username: "guttermana",
+  username: "",
   userData: {},
   disabled: false,
   error: {
@@ -22,26 +23,7 @@ const defaultState = {
 class App extends Component {
   state = defaultState;
 
-  componentDidMount = () => {
-    if (process.env.NODE_ENV === "development") {
-      octokit.users
-        .getByUsername({
-          username: this.state.username
-        })
-        .then(res => this.setState({ userData: res.data }))
-        .catch(error =>
-          this.setState({
-            ...this.state,
-            error: { status: true, code: error.status, message: error.message }
-          })
-        )
-        .finally(() => console.log(this.state));
-    }
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-    this.setState({ disabled: true });
+  userSearch = () => {
     octokit.users
       .getByUsername({
         username: this.state.username
@@ -54,6 +36,18 @@ class App extends Component {
         })
       )
       .finally(() => console.log(this.state));
+  };
+
+  componentDidMount = () => {
+    if (process.env.NODE_ENV === "development") {
+      this.setState({ username: "guttermana" }, this.userSearch);
+    }
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    this.setState({ disabled: true });
+    this.userSearch();
   };
 
   handleChange = event => {
@@ -71,15 +65,16 @@ class App extends Component {
   };
 
   render() {
-    const { userData, error } = this.state;
+    const { userData, error, disabled } = this.state;
     return (
       <div>
         <Search
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
+          disabled={disabled}
         />
         {error.status && <Error code={error.code} message={error.message} />}
-        <UserInfo userData={userData} />
+        {isObjectWithKeys(userData) && <UserInfo userData={userData} />}
       </div>
     );
   }

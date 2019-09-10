@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { MetaData, Avatar } from "./components";
-import { Container } from "components";
+import { MetaData } from "./components";
+import { Container, Image } from "components";
 
 class UserInfo extends Component {
   render() {
@@ -9,7 +9,7 @@ class UserInfo extends Component {
 
     return (
       <Container>
-        <Avatar src={avatarURL} />
+        <Image className="avatar" src={avatarURL} />
         <MetaData userData={userData} />
       </Container>
     );

@@ -1,19 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Avatar/> renders correctly 1`] = `
+exports[`<Image/> renders correctly 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <img
-        class="avatar"
-      />
+      <img />
     </div>
   </body>,
   "container": <div>
-    <img
-      class="avatar"
-    />
+    <img />
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

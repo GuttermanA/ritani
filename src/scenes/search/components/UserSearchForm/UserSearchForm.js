@@ -12,6 +12,7 @@ class UserSearchForm extends Component {
             placeholder="Github Username"
             type="text"
             onChange={handleChange}
+            required
           />
           <Form.Button disabled={disabled}>Search</Form.Button>
         </Form>
