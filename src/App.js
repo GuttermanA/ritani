@@ -3,6 +3,7 @@ import { octokit } from "api";
 import { Search, FollowerList, UserInfo } from "scenes";
 import { Error, Button, Container } from "components";
 import { isObjectWithKeys, getSearchParamValue } from "lib";
+import parse from "parse-link-header";
 import "./App.css";
 
 const followersPerPage = 30;
@@ -16,9 +17,9 @@ const defaultState = {
   username: "",
   userData: {},
   followers: {
-    data: {},
-    page: 1,
-    lastPage: null
+    data: [],
+    currentPage: 1,
+    links: {}
   },
   disabled: false,
   error: {
@@ -31,37 +32,20 @@ const defaultState = {
 class App extends Component {
   state = defaultState;
 
-  userSearch = () => {
-    octokit.users
+  componentDidMount = () => {
+    if (process.env.NODE_ENV === "development") {
+      this.setState({ username: "jim" }, this.handleSubmit);
+    }
+  };
+
+  fetchUser = async () => {
+    await octokit.users
       .getByUsername({
         username: this.state.username
       })
-      .then(res => this.setState({ userData: res.data }))
-      .catch(error =>
-        this.setState({
-          ...this.state,
-          error: { status: true, code: error.status, message: error.message }
-        })
-      );
-    // .finally(() => console.log(this.state));
-  };
-
-  fetchFollowers = page => {
-    octokit.users
-      .listFollowersForUser({
-        username: this.state.username,
-        page: page || this.state.followers.page
-      })
       .then(res => {
-        this.setState({
-          ...this.state,
-          followers: {
-            data: res.data,
-            page: getSearchParamValue(res.url, "page")
-          }
-        });
+        this.setState({ userData: res.data });
       })
-      // .then(res => this.setState({ followerData: res.data }))
       .catch(error =>
         this.setState({
           ...this.state,
@@ -71,20 +55,69 @@ class App extends Component {
       .finally(() => console.log(this.state));
   };
 
-  componentDidMount = () => {
-    if (process.env.NODE_ENV === "development") {
-      this.setState({ username: "jim" }, this.handleSubmit);
-    }
+  // fetchFollowers = () => {
+  //   octokit.users
+  //     .listFollowersForUser({
+  //       username: this.state.username,
+  //       page: this.state.followers.currentPage
+  //     })
+  //     .then(res => {
+  //       console.log(res.headers.link);
+  //       const parsedLinkHeader = parse(res.headers.link);
+  //       console.log(parsedLinkHeader);
+  //       const newState = {
+  //         ...this.state,
+  //         followers: {
+  //           data: this.state.followers.data.concat(res.data),
+  //           currentPage: getSearchParamValue(res.url, "page"),
+  //           nextPageURL: parsedLinkHeader.next && parsedLinkHeader.next.url,
+  //           lastPageURL: parsedLinkHeader.last && parsedLinkHeader.last.url
+  //         }
+  //       };
+  //       this.setState(newState);
+  //     })
+  //     .catch(error =>
+  //       this.setState({
+  //         ...this.state,
+  //         error: { status: true, code: error.status, message: error.message }
+  //       })
+  //     )
+  //     .finally(() => console.log(this.state));
+  // };
+
+  fetchFollowers = async url => {
+    // const followersPath = new URL(url).pathname;
+    await octokit
+      .request(`GET ${url}`)
+      .then(res => {
+        const parsedLinkHeader = parse(res.headers.link);
+        // console.log(parsedLinkHeader);
+        const newState = {
+          ...this.state,
+          followers: {
+            data: this.state.followers.data.concat(res.data),
+            links: parsedLinkHeader,
+            currentPage: parseInt(getSearchParamValue(url, "page"), 10) || 1
+          }
+        };
+        this.setState(newState);
+      })
+      .catch(error =>
+        this.setState({
+          ...this.state,
+          error: { status: true, code: error.status, message: error.message }
+        })
+      )
+      .finally(() => console.log(this.state));
   };
 
   handleSubmit = async event => {
     event && event.preventDefault();
     this.setState({ disabled: true });
-    await this.userSearch();
-    console.log("successfull user search");
-    if (!this.state.error.status) this.fetchFollowers();
-    console.log("sucessfull follower search");
+    await this.fetchUser();
     this.setState({ disabled: false });
+    if (!this.state.error.status)
+      await this.fetchFollowers(this.state.userData.followers_url);
   };
 
   handleChange = event => {
@@ -101,12 +134,21 @@ class App extends Component {
     );
   };
 
+  loadMoreFollowers = event => {
+    event && event.preventDefault();
+    console.log("Loading more...");
+    // const { links } = this.state.followers;
+    const nextURL =
+      this.state.followers.links.next && this.state.followers.links.next.url;
+    nextURL && this.fetchFollowers(nextURL);
+  };
+
   render() {
     const { userData, followers, error, disabled } = this.state;
-    const remainingPages = calcRemaingingPages(
-      followers.page,
-      userData.followers
+    const lastPage = !(
+      this.state.followers.links && this.state.followers.links.next
     );
+    console.log(lastPage);
     return (
       <div>
         <Search
@@ -119,7 +161,8 @@ class App extends Component {
         {followers.data.length && (
           <FollowerList
             followerData={followers.data}
-            remainingPages={remainingPages}
+            lastPage={lastPage}
+            loadMoreFollowers={this.loadMoreFollowers}
           />
         )}
       </div>

@@ -5,7 +5,7 @@ import { Button } from "components";
 
 class FollowerList extends Component {
   render() {
-    const { followerData, children, remainingPages } = this.props;
+    const { followerData, children, lastPage, loadMoreFollowers } = this.props;
     const followers = followerData.map(follower => {
       const { avatar_url, login, url, followers_url } = follower;
       return (
@@ -21,7 +21,10 @@ class FollowerList extends Component {
       <div>
         <Container className="fluid container">{followers}</Container>
         {followerData.length && (
-          <LoadFollowersButton remainingPages={remainingPages} />
+          <LoadFollowersButton
+            lastPage={lastPage}
+            loadMoreFollowers={loadMoreFollowers}
+          />
         )}
       </div>
     );

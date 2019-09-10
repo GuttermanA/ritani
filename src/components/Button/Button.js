@@ -17,9 +17,22 @@ class Button extends Component {
 
   render() {
     // const ElementType = getElementType(Button, this.props);
-    const { children, className, type = "submit", name, disabled } = this.props;
+    const {
+      children,
+      className,
+      type = "submit",
+      name,
+      disabled,
+      onClick
+    } = this.props;
     return (
-      <button name={name} type={type} className={className} disabled={disabled}>
+      <button
+        name={name}
+        type={type}
+        className={className}
+        disabled={disabled}
+        onClick={onClick}
+      >
         {children}
       </button>
     );
