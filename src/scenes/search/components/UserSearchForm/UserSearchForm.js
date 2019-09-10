@@ -5,7 +5,7 @@ class UserSearchForm extends Component {
   render() {
     const { handleSubmit, handleChange, disabled, error } = this.props;
     return (
-      <Container className="header fluid center container">
+      <Container className="menu fluid center container">
         <Form onSubmit={handleSubmit}>
           {error && "ERROR"}
           <Form.Field

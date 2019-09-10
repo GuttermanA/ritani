@@ -1,20 +1,27 @@
 .container {
-  margin: 0 auto;
-  max-width: 75%;
+  margin: auto;
+  max-width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
 }
 
 .center.container {
   text-align: center;
-  padding: 10px;
 }
 
-.header.container {
+.menu.container {
   background-color: black;
 }
 
 .fluid.container {
   max-width: 100%;
 }
+
+/* .inline.container {
+  display: inline-flex;
+} */
 
 /* .right.container {
   text-align: right;
