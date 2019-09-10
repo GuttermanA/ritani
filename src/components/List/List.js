@@ -1,8 +1,11 @@
 import React, { Component } from "react";
+import { ListItem } from "./ListItem";
 
 class List extends Component {
+  static Item = ListItem;
   render() {
-    return <ul></ul>;
+    const { children } = this.props;
+    return <ul>{children}</ul>;
   }
 }
 

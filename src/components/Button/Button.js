@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Button from "../Button";
 // import getElementType from "../../lib";
 
-class FormButton extends Component {
+class Button extends Component {
   static propTypes = {
     as: PropTypes.elementType,
     action: PropTypes.string,
@@ -17,24 +16,15 @@ class FormButton extends Component {
     as: "button"
   };
 
-  // handleClick = event => {
-  //   const { disabled } = this.props;
-  //   if (disabled) {
-  //     event.preventDefault();
-  //     return;
-  //   }
-  //   this.props.handleClick && this.props.handleClick();
-  // };
-
   render() {
-    // const ElementType = getElementType(FormButton, this.props);
+    // const ElementType = getElementType(Button, this.props);
     const { children, className, type = "submit", name, disabled } = this.props;
     return (
-      <Button name={name} type={type} className={className} disabled={disabled}>
+      <button name={name} type={type} className={className} disabled={disabled}>
         {children}
-      </Button>
+      </button>
     );
   }
 }
 
-export default FormButton;
+export default Button;
