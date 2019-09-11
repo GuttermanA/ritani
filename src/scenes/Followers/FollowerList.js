@@ -10,7 +10,8 @@ class FollowerList extends Component {
       children,
       lastPage,
       loadMoreFollowers,
-      fetchUserWithFollowers
+      fetchUserWithFollowers,
+      ...rest
     } = this.props;
     const followers =
       followerData &&

@@ -4,7 +4,7 @@ import { Container, Image } from "components";
 
 class UserInfo extends Component {
   render() {
-    const { userData } = this.props;
+    const { userData, ...rest } = this.props;
     const { avatar_url, login } = userData;
 
     return (
