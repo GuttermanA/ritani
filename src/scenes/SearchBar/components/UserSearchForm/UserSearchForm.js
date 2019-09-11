@@ -3,10 +3,16 @@ import { Form } from "components";
 
 class UserSearchForm extends Component {
   render() {
-    const { handleSubmit, handleChange, disabled, username } = this.props;
+    const {
+      handleSubmit,
+      handleChange,
+      disabled,
+      username,
+      ...rest
+    } = this.props;
     return (
-      <Form onSubmit={handleSubmit}>
-        <Form.Label fieldName="username">
+      <Form onSubmit={handleSubmit} data-testid="search-form">
+        <Form.Label fieldName="username" data-testid="search-label">
           Enter Github Username to Retrieve Followers
         </Form.Label>
         <Form.Field
@@ -16,8 +22,11 @@ class UserSearchForm extends Component {
           onChange={handleChange}
           value={username}
           required
+          data-testid="search-field"
         />
-        <Form.Button disabled={disabled}>Search</Form.Button>
+        <Form.Button data-testid="search-button" disabled={disabled}>
+          Search
+        </Form.Button>
       </Form>
     );
   }

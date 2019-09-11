@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent, cleanup } from "@testing-library/react";
+import { render, cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import FollowerList from "../FollowerList";
 
@@ -54,6 +54,7 @@ const mockFollowers = [
 ];
 
 describe("<FollowerList/>", () => {
+  afterEach(cleanup);
   test("renders correctly", () => {
     const component = render(<FollowerList />);
     expect(component).toMatchSnapshot();

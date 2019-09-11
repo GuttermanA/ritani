@@ -19,7 +19,7 @@ class FormField extends Component {
         className={className}
         type={type}
         name={name}
-        required
+        required={required}
         placeholder={placeholder}
         onChange={onChange}
         onFocus={onFocus}
