@@ -22,6 +22,7 @@ const LoadFollowersButton = props => {
   return (
     <Fragment>
       <Button
+        data-testid="load-followers-button"
         className="button centered"
         disabled={lastPage}
         onClick={loadMoreFollowers}

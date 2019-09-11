@@ -7,4 +7,10 @@ describe("<LoadFollowersButton/>", () => {
     const component = renderer.create(<LoadFollowersButton />);
     expect(component).toMatchSnapshot();
   });
+
+  it("is disabled when passed a disabled prop", () => {
+    let component = render(<LoadFollowersButton disabled={true} />);
+    expect(component).toMatchSnapshot();
+    expect(component.queryByTestId("load-follower-button")).toBeTruthy();
+  });
 });
