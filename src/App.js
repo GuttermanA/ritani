@@ -23,11 +23,25 @@ const defaultState = {
 };
 
 class App extends Component {
-  state = defaultState;
+  state = {
+    username: "",
+    userData: {},
+    followers: {
+      data: [],
+      currentPage: 1,
+      links: {}
+    },
+    disabled: false,
+    error: {
+      status: false,
+      code: null,
+      message: ""
+    }
+  };
 
   componentDidMount() {
     if (process.env.NODE_ENV === "development") {
-      this.setState({ username: "jim" }, this.handleSubmit);
+      this.setState({ username: "jim" }, this.fetchUserWithFollowers);
     }
   }
 
@@ -37,7 +51,7 @@ class App extends Component {
         username: username || this.state.username
       })
       .then(res => {
-        this.setState({ userData: res.data });
+        this.setState({ username: res.data.login, userData: res.data });
       })
       .catch(error =>
         this.setState({
@@ -53,7 +67,6 @@ class App extends Component {
       .request(`GET ${url}`)
       .then(res => {
         const parsedLinkHeader = parse(res.headers.link);
-        // console.log(parsedLinkHeader);
         const newState = {
           ...this.state,
           followers: {
@@ -73,16 +86,29 @@ class App extends Component {
     // .finally(() => console.log(this.state));
   };
 
-  fetchUserWithFollowers = async username => {
-    this.setState(defaultState);
-    await this.fetchUser(username);
+  fetchUserWithFollowers = async newUserName => {
+    const { userData, username } = this.state;
+    // debugger;
+    if (
+      username === newUserName ||
+      (!newUserName &&
+        username === (isObjectWithKeys(userData) && userData.login))
+    )
+      return;
+
+    this.setState({ ...defaultState }, () =>
+      console.log("before user fetch", this.state)
+    );
+
+    await this.fetchUser(newUserName);
+    console.log("before follower fetch", this.state);
     if (!this.state.error.status)
       await this.fetchFollowers(this.state.userData.followers_url);
+    console.log("end of fetch", this.state);
   };
 
   handleSubmit = async event => {
-    event && event.preventDefault();
-
+    event.preventDefault();
     this.setState({ disabled: true });
     await this.fetchUserWithFollowers();
     this.setState({ disabled: false });
@@ -93,19 +119,13 @@ class App extends Component {
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
 
-    this.setState(
-      {
-        ...this.state,
-        [name]: value
-      }
-      // () => console.log(this.state)
+    this.setState({ ...this.state, [name]: value }, () =>
+      console.log(this.state)
     );
   };
 
   loadMoreFollowers = async event => {
     event && event.preventDefault();
-    console.log("Loading more...");
-    // const { links } = this.state.followers;
     const nextURL =
       this.state.followers.links.next && this.state.followers.links.next.url;
     if (nextURL) await this.fetchFollowers(nextURL);
