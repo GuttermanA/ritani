@@ -9,9 +9,9 @@ class FollowerList extends Component {
       followerData,
       children,
       lastPage,
+      page,
       loadMoreFollowers,
       fetchUserWithFollowers,
-      ...rest
     } = this.props;
     const followers =
       followerData &&
@@ -35,6 +35,7 @@ class FollowerList extends Component {
         <Container className="container">{followers}</Container>
         <LoadFollowersButton
           lastPage={lastPage}
+          page={page}
           loadMoreFollowers={loadMoreFollowers}
         />
         {children}

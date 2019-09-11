@@ -2,19 +2,21 @@ import React, { Fragment, useEffect, useRef } from "react";
 import { Button } from "components";
 
 const LoadFollowersButton = props => {
-  const { lastPage, loadMoreFollowers } = props;
+  const { lastPage, loadMoreFollowers, page } = props;
   const content = lastPage ? "End of Followers" : "Load";
 
   const followersEndRef = useRef(null);
 
   const scrollToBottom = () => {
-    setTimeout(() => {
-      followersEndRef.current.scrollIntoView({
-        block: "end",
-        behavior: "smooth",
-        inline: "nearest"
-      });
-    }, 50);
+    if (page !== 1) {
+      setTimeout(() => {
+        followersEndRef.current.scrollIntoView({
+          block: "end",
+          behavior: "smooth",
+          inline: "nearest"
+        });
+      }, 50);
+    }
   };
 
   useEffect(scrollToBottom);

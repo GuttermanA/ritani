@@ -26,8 +26,6 @@ Run tests:
 yarn test
 ```
 
-`REACT_APP_PERSONAL_ACCESS_TOKEN=YOUR ACCESS TOKEN`
-
 ## Overview
 
 This repository contains my one page application for the Ritani code challenge.
@@ -50,8 +48,6 @@ Features:
   - Clicking the button will fire off a search for that user, replacing the results in the current window
 - Error messages from the server will be displayed in a conditionally rendered box at below the search bar
 
-<!-- Users can search for any Github username to return their followers and links to their Github and blog pages. Followers are displayed as their avatar, 30 at a time. Additional followers can be loaded by clinging the "Load Followers" button at the bottom of the window. Users can mouse over follower avatars to reveal a button with the follower username. Clicking on this button performs a follower search using the given username, replacing the current results. If there are no followers, a message will be displayed. Error codes will be displayed in a conditionally rendered menu below the search bar. -->
-
 In the remainder of this README I will describe my design decisions regarding app structure, styling, and testing.
 
 ### App Structure
@@ -59,7 +55,7 @@ In the remainder of this README I will describe my design decisions regarding ap
 Since this is a React app, project structure is up to the user. In this case, I chose a slightly more complicated structure to demonstrate my understanding of separation of concerns and how to lay the foundation for expanding to a much larger application without the headache of refactoring in the future.
 
 ```bash
-.
+./src
 ├── index.css
 ├── index.js
 ├── App.css

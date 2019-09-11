@@ -4,7 +4,6 @@ import { SearchBar, FollowerList, UserInfo } from "scenes";
 import { Error, Container } from "components";
 import { isObjectWithKeys, getSearchParamValue } from "lib";
 import parse from "parse-link-header";
-import "./App.css";
 
 const defaultState = {
   username: "",
@@ -84,7 +83,7 @@ class App extends Component {
           error: { status: true, code: error.status, message: error.message }
         })
       )
-      .finally(() => console.log(this.state.followers.data));
+    // .finally(() => console.log(this.state.followers.data));
   };
 
   fetchUserWithFollowers = async newUserName => {
@@ -149,6 +148,7 @@ class App extends Component {
           <FollowerList
             followerData={followers.data}
             lastPage={lastPage}
+            page={followers.currentPage}
             loadMoreFollowers={this.loadMoreFollowers}
             fetchUserWithFollowers={this.fetchUserWithFollowers}
           />
