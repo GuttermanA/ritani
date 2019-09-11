@@ -8,13 +8,19 @@ const LoadFollowersButton = props => {
   const followersEndRef = useRef(null);
 
   const scrollToBottom = () => {
-    followersEndRef.current.scrollIntoView({ behavior: "smooth" });
+    setTimeout(() => {
+      followersEndRef.current.scrollIntoView({
+        block: "end",
+        behavior: "smooth",
+        inline: "nearest"
+      });
+    }, 50);
   };
 
   useEffect(scrollToBottom);
 
   return (
-    <Fragment>
+    <div>
       <Button
         className="button centered"
         disabled={lastPage}
@@ -23,7 +29,7 @@ const LoadFollowersButton = props => {
         {content}
       </Button>
       <div ref={followersEndRef} />
-    </Fragment>
+    </div>
   );
 };
 

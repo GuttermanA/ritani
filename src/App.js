@@ -122,9 +122,10 @@ class App extends Component {
             handleSubmit={this.handleSubmit}
             disabled={disabled}
           />
+          {error.status && <Error code={error.code} message={error.message} />}
+          {isObjectWithKeys(userData) && <UserInfo userData={userData} />}
         </div>
-        {error.status && <Error code={error.code} message={error.message} />}
-        {isObjectWithKeys(userData) && <UserInfo userData={userData} />}
+
         {followers.data.length ? (
           <FollowerList
             followerData={followers.data}

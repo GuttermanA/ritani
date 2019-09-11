@@ -31,6 +31,8 @@
 .menu.container {
   background-color: black;
   padding: 2rem;
+  position: sticky !important;
+  top: 0 !important;
 }
 
 .fluid.container {
