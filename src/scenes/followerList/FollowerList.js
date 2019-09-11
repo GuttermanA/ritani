@@ -12,20 +12,22 @@ class FollowerList extends Component {
       loadMoreFollowers,
       fetchUserWithFollowers
     } = this.props;
-    const followers = followerData.map(follower => {
-      const { avatar_url, login, url, followers_url } = follower;
-      return (
-        <MouseOverAvatar
-          src={avatar_url}
-          alt={`${login} follower avatar`}
-          id={login}
-          url={url}
-          followersURL={followers_url}
-          key={uuid()}
-          fetchUserWithFollowers={fetchUserWithFollowers}
-        />
-      );
-    });
+    const followers =
+      followerData &&
+      followerData.map(follower => {
+        const { avatar_url, login, url, followers_url } = follower;
+        return (
+          <MouseOverAvatar
+            src={avatar_url}
+            alt={`${login} follower avatar`}
+            id={login}
+            url={url}
+            followersURL={followers_url}
+            key={uuid()}
+            fetchUserWithFollowers={fetchUserWithFollowers}
+          />
+        );
+      });
 
     return (
       <Fragment>

@@ -63,6 +63,7 @@ class App extends Component {
   };
 
   fetchFollowers = async url => {
+    console.log(url);
     await octokit
       .request(`GET ${url}`)
       .then(res => {
@@ -82,8 +83,8 @@ class App extends Component {
           ...this.state,
           error: { status: true, code: error.status, message: error.message }
         })
-      );
-    // .finally(() => console.log(this.state));
+      )
+      .finally(() => console.log(this.state.followers.data));
   };
 
   fetchUserWithFollowers = async newUserName => {

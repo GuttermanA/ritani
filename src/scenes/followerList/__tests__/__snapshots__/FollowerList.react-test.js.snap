@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FollowerList/> renders correctly 1`] = `
+Array [
+  <div
+    className="container"
+  />,
+  <button
+    className="button centered"
+    type="submit"
+  >
+    Load
+  </button>,
+  <div />,
+]
+`;
+
+exports[`<FollowerList/> renders followers passed as a prop 1`] = `
+Array [
+  <div
+    className="container"
+  >
+    <div
+      className="avatar-container"
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <img
+        alt="Vkopensource follower avatar"
+        className="avatar"
+        src="https://avatars2.githubusercontent.com/u/48538853?v=4"
+      />
+    </div>
+    <div
+      className="avatar-container"
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <img
+        alt="stvtortora follower avatar"
+        className="avatar"
+        src="https://avatars3.githubusercontent.com/u/32438308?v=4"
+      />
+    </div>
+  </div>,
+  <button
+    className="button centered"
+    type="submit"
+  >
+    Load
+  </button>,
+  <div />,
+]
+`;

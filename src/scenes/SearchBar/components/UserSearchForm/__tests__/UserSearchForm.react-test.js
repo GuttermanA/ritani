@@ -1,11 +1,10 @@
 import React from "react";
-import { cleanup, render } from "utils/test-utils";
+import renderer from "react-test-renderer";
 import UserSearchForm from "../UserSearchForm";
 
 describe("<UserSearchForm/>", () => {
-  afterEach(cleanup);
   it("renders correctly", () => {
-    const component = render(<UserSearchForm />);
+    const component = renderer.create(<UserSearchForm />);
     expect(component).toMatchSnapshot();
   });
 

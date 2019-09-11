@@ -1,11 +1,10 @@
 import React from "react";
-import { cleanup, render } from "utils/test-utils";
+import renderer from "react-test-renderer";
 import Container from "../Container";
 
 describe("<Container/>", () => {
-  afterEach(cleanup);
   it("renders correctly", () => {
-    const component = render(<Container />);
+    const component = renderer.create(<Container />);
     expect(component).toMatchSnapshot();
   });
 });

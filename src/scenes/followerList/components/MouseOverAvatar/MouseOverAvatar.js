@@ -23,7 +23,15 @@ class MouseOverAvatar extends Component {
   };
 
   render() {
-    const { src, alt, id, url, followersURL, ...rest } = this.props;
+    const {
+      src,
+      alt,
+      id,
+      url,
+      followersURL,
+      fetchUserWithFollowers,
+      ...rest
+    } = this.props;
     const { disabled } = this.props;
     return (
       <Container

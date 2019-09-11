@@ -1,11 +1,10 @@
 import React from "react";
-import { cleanup, render } from "utils/test-utils";
+import renderer from "react-test-renderer";
 import Form from "../Form";
 
 describe("<Form/>", () => {
-  afterEach(cleanup);
   it("renders correctly", () => {
-    const component = render(
+    const component = renderer.create(
       <Form>
         <Form.Field />
         <Form.Button />
