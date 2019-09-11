@@ -31,10 +31,10 @@ class App extends Component {
     }
   }
 
-  fetchUser = async () => {
+  fetchUser = async username => {
     await octokit.users
       .getByUsername({
-        username: this.state.username
+        username: username || this.state.username
       })
       .then(res => {
         this.setState({ userData: res.data });
@@ -73,14 +73,18 @@ class App extends Component {
       .finally(() => console.log(this.state));
   };
 
+  fetchUserWithFollowers = async username => {
+    this.setState(defaultState);
+    await this.fetchUser(username);
+    if (!this.state.error.status)
+      await this.fetchFollowers(this.state.userData.followers_url);
+  };
+
   handleSubmit = async event => {
     event && event.preventDefault();
 
-    this.setState({ ...defaultState, disabled: true });
-    await this.fetchUser();
-    this.setState({ disabled: false });
-    if (!this.state.error.status)
-      await this.fetchFollowers(this.state.userData.followers_url);
+    this.setState({ disabled: true });
+    await this.fetchUserWithFollowers();
     this.setState({ disabled: false });
   };
 
@@ -129,6 +133,7 @@ class App extends Component {
             followerData={followers.data}
             lastPage={lastPage}
             loadMoreFollowers={this.loadMoreFollowers}
+            fetchUserWithFollowers={this.fetchUserWithFollowers}
           />
         ) : (
           <Container className="message container">
