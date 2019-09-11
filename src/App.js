@@ -26,23 +26,10 @@ class App extends Component {
   state = defaultState;
   pageBottomRef = React.createRef();
 
-  scrollToBottom() {
-    this.pageBottomRef.current.scrollIntoView({ behavior: "smooth" });
-  }
-
   componentDidMount() {
-    this.scrollToBottom();
     if (process.env.NODE_ENV === "development") {
       this.setState({ username: "jim" }, this.handleSubmit);
     }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    this.scrollToBottom();
-    // if (prevState.followers.length !== this.state.followers.length) {
-    //   this.scrollToBottom();
-    // }
-    // this.scrollToBottom();
   }
 
   fetchUser = async () => {
@@ -128,7 +115,7 @@ class App extends Component {
     );
     console.log(lastPage);
     return (
-      <Fragment>
+      <Container className="main-container">
         <div className="sticky-top">
           <Search
             handleChange={this.handleChange}
@@ -149,11 +136,9 @@ class App extends Component {
             <h1> No Followers Yet</h1>
           </Container>
         )}
-        <div
-          style={{ float: "left", clear: "both" }}
-          ref={this.pageBottomRef}
-        />
-      </Fragment>
+
+        <footer></footer>
+      </Container>
     );
   }
 }

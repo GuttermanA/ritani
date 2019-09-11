@@ -21,10 +21,11 @@
 .follower {
   opacity: 1;
   display: block;
-  width: 10%;
+  width: 8.3%;
   height: auto;
   transition: 0.5s ease;
   backface-visibility: hidden;
+  padding: 0.5rem;
 }
 
 .middle {

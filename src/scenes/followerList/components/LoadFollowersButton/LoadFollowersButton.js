@@ -1,15 +1,20 @@
-import React, { Component } from "react";
+import React, { Fragment, useEffect, useRef } from "react";
 import { Button } from "components";
 
-class LoadFollowersButton extends Component {
-  // shouldComponentUpdate(nextProps) {
-  //   return nextProps.disabled !== this.props.disabled ? true : false;
-  // }
+const LoadFollowersButton = props => {
+  const { lastPage, loadMoreFollowers } = props;
+  const content = lastPage ? "End of Followers" : "Load";
 
-  render() {
-    const { lastPage, loadMoreFollowers } = this.props;
-    const content = lastPage ? "End of Followers" : "Load";
-    return (
+  const followersEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    followersEndRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(scrollToBottom);
+
+  return (
+    <Fragment>
       <Button
         className="button centered"
         disabled={lastPage}
@@ -17,8 +22,9 @@ class LoadFollowersButton extends Component {
       >
         {content}
       </Button>
-    );
-  }
-}
+      <div ref={followersEndRef} />
+    </Fragment>
+  );
+};
 
 export default LoadFollowersButton;

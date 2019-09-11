@@ -3,9 +3,9 @@ import "./Container.css";
 
 class Container extends Component {
   render() {
-    const { className = "container", children, ...rest } = this.props;
+    const { className = "container", children, ref, ...rest } = this.props;
     return (
-      <div className={className} {...rest}>
+      <div className={className} {...rest} ref={ref}>
         {children}
       </div>
     );
