@@ -40,9 +40,9 @@ class App extends Component {
   };
 
   componentDidMount() {
-    if (process.env.NODE_ENV === "development") {
-      this.setState({ username: "jim" }, this.fetchUserWithFollowers);
-    }
+    // if (process.env.NODE_ENV === "development") {
+    //   this.setState({ username: "" }, this.fetchUserWithFollowers);
+    // }
   }
 
   fetchUser = async username => {
@@ -95,6 +95,7 @@ class App extends Component {
         username === (isObjectWithKeys(userData) && userData.login))
     )
       return;
+    // debugger;
 
     this.setState({ ...defaultState }, () =>
       console.log("before user fetch", this.state)
@@ -119,9 +120,7 @@ class App extends Component {
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
 
-    this.setState({ ...this.state, [name]: value }, () =>
-      console.log(this.state)
-    );
+    this.setState({ ...this.state, [name]: value });
   };
 
   loadMoreFollowers = async event => {

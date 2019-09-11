@@ -1,14 +1,18 @@
 import React, { Component } from "react";
+import "./Form.css";
 
 class FormField extends Component {
   render() {
     const {
-      className,
+      className = "form field",
       type = "text",
       name,
       required,
       placeholder,
-      onChange
+      onChange,
+      onFocus,
+      value,
+      ...rest
     } = this.props;
     return (
       <input
@@ -18,6 +22,9 @@ class FormField extends Component {
         required
         placeholder={placeholder}
         onChange={onChange}
+        onFocus={onFocus}
+        value={value}
+        {...rest}
       />
     );
   }

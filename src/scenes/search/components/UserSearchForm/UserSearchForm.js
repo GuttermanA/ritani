@@ -7,6 +7,9 @@ class UserSearchForm extends Component {
     return (
       <Container className="menu fluid center container">
         <Form onSubmit={handleSubmit}>
+          <Form.Label fieldName="username">
+            Enter Github Username to Retrieve Followers
+          </Form.Label>
           <Form.Field
             name="username"
             placeholder="Github Username"
@@ -15,9 +18,7 @@ class UserSearchForm extends Component {
             value={username}
             required
           />
-          <Form.Button className="button" disabled={disabled}>
-            Search
-          </Form.Button>
+          <Form.Button disabled={disabled}>Search</Form.Button>
         </Form>
       </Container>
     );

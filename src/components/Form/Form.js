@@ -19,6 +19,7 @@ class Form extends Component {
 
   static Button = FormButton;
   static Field = FormField;
+  static Label = FormLabel;
 
   render() {
     const { action, children, className, onSubmit, ...rest } = this.props;

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Button from "../Button";
+import "./Form.css";
 
 class FormButton extends Component {
   static propTypes = {
@@ -18,7 +19,13 @@ class FormButton extends Component {
 
   render() {
     // const ElementType = getElementType(FormButton, this.props);
-    const { children, className, type = "submit", name, disabled } = this.props;
+    const {
+      children,
+      className = "form button",
+      type = "submit",
+      name,
+      disabled
+    } = this.props;
     return (
       <Button name={name} type={type} className={className} disabled={disabled}>
         {children}

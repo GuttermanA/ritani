@@ -2,8 +2,12 @@ import React, { Component } from "react";
 
 class FormLabel extends Component {
   render() {
-    const { children } = this.props;
-    return <label>{children}</label>;
+    const { children, fieldName, className = "form label" } = this.props;
+    return (
+      <label className={className} for={fieldName}>
+        {children}
+      </label>
+    );
   }
 }
 
