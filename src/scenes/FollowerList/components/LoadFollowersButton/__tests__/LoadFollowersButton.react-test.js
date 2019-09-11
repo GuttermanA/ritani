@@ -1,16 +1,34 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import { render, fireEvent, cleanup } from "@testing-library/react";
+import "@testing-library/jest-dom/extend-expect";
 import LoadFollowersButton from "../LoadFollowersButton";
 
 describe("<LoadFollowersButton/>", () => {
   it("renders correctly", () => {
-    const component = renderer.create(<LoadFollowersButton />);
+    const component = render(<LoadFollowersButton />);
     expect(component).toMatchSnapshot();
+    expect(component.queryByTestId("load-followers-button")).toBeTruthy();
   });
 
   it("is disabled when passed a disabled prop", () => {
-    let component = render(<LoadFollowersButton disabled={true} />);
-    expect(component).toMatchSnapshot();
-    expect(component.queryByTestId("load-follower-button")).toBeTruthy();
+    const { queryByTestId, queryByText } = render(
+      <LoadFollowersButton lastPage={true} />
+    );
+    expect(queryByTestId("load-followers-button")).toHaveAttribute("disabled");
+    expect(queryByText("End of Followers")).toBeTruthy();
+  });
+
+  it("calls loadMoreFollowers onClick", () => {
+    const loadMoreFollowers = jest.fn(() => Promise.resolve);
+    const { queryByTestId, queryByText } = render(
+      <LoadFollowersButton
+        lastPage={false}
+        loadMoreFollowers={loadMoreFollowers}
+      />
+    );
+
+    expect(queryByText("Load")).toBeTruthy();
+    fireEvent.click(queryByTestId("load-followers-button"));
+    expect(loadMoreFollowers).toHaveBeenCalledTimes(1);
   });
 });
