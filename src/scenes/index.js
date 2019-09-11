@@ -1,3 +1,3 @@
-export { default as Search } from "./search";
-export { default as UserInfo } from "./userInfo";
-export { default as FollowerList } from "./followerList";
+export { default as SearchBar } from "./SearchBar";
+export { default as UserInfo } from "./UserInfo";
+export { default as FollowerList } from "./FollowerList";

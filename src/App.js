@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { octokit } from "api";
-import { Search, FollowerList, UserInfo } from "scenes";
+import { SearchBar, FollowerList, UserInfo } from "scenes";
 import { Error, Container } from "components";
 import { isObjectWithKeys, getSearchParamValue } from "lib";
 import parse from "parse-link-header";
@@ -138,7 +138,7 @@ class App extends Component {
     return (
       <div>
         <div className="sticky-top">
-          <Search
+          <SearchBar
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
             disabled={disabled}
