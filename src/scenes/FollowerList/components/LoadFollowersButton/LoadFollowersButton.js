@@ -36,4 +36,4 @@ const LoadFollowersButton = props => {
   );
 };
 
-export default LoadFollowersButton;
+export default React.memo(LoadFollowersButton);
