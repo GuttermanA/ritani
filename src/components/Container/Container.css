@@ -30,9 +30,7 @@
 
 .menu.container {
   width: 100%;
-  min-height: 5vh;
   background-color: black;
-  padding: 2rem;
   flex: 0 1 auto;
 }
 

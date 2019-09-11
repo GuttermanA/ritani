@@ -3,10 +3,10 @@ import { List } from "components";
 
 class MetaData extends Component {
   render() {
-    const { userData } = this.props;
+    const { userData, className } = this.props;
     const { login, followers, blog, html_url } = userData;
     return (
-      <List className="list none" style={{ fontSize: "1.5rem" }}>
+      <List className={className}>
         <List.Item style={{ fontWeight: "bold" }}>
           <a href={html_url} target="_blank" rel="noopener noreferrer">
             {login}

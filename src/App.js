@@ -62,7 +62,6 @@ class App extends Component {
   };
 
   fetchFollowers = async url => {
-    console.log(url);
     await octokit
       .request(`GET ${url}`)
       .then(res => {

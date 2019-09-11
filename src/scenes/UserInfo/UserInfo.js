@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { MetaData } from "./components";
 import { Container, Image } from "components";
+import "./UserInfo.css"
 
 class UserInfo extends Component {
   render() {
@@ -10,12 +11,11 @@ class UserInfo extends Component {
     return (
       <Container className="user-info container">
         <Image
-          className="avatar"
+          className="search avatar"
           src={avatar_url}
           alt={`${login} user avatar`}
-          style={{ minWidth: "9.5rem" }}
         />
-        <MetaData userData={userData} />
+        <MetaData className="search list none" userData={userData} />
       </Container>
     );
   }
