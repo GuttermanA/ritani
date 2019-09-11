@@ -1,6 +1,6 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import ShallowRenderer from "react-test-renderer/shallow";
+import { render, fireEvent, cleanup } from "@testing-library/react";
+import "@testing-library/jest-dom/extend-expect";
 import FollowerList from "../FollowerList";
 
 const mockFollowers = [
@@ -55,14 +55,15 @@ const mockFollowers = [
 
 describe("<FollowerList/>", () => {
   test("renders correctly", () => {
-    const component = renderer.create(<FollowerList />);
+    const component = render(<FollowerList />);
     expect(component).toMatchSnapshot();
   });
 
   test("renders followers passed as a prop", () => {
-    const component = renderer.create(
+    const { queryAllByTestId } = render(
       <FollowerList followerData={mockFollowers} />
     );
-    expect(component).toMatchSnapshot();
+
+    expect(queryAllByTestId("mouse-over-avatar-member").length).toBe(2);
   });
 });

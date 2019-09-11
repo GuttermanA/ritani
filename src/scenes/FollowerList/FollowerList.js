@@ -11,7 +11,7 @@ class FollowerList extends Component {
       lastPage,
       page,
       loadMoreFollowers,
-      fetchUserWithFollowers,
+      fetchUserWithFollowers
     } = this.props;
     const followers =
       followerData &&
@@ -26,6 +26,7 @@ class FollowerList extends Component {
             followersURL={followers_url}
             key={uuid()}
             fetchUserWithFollowers={fetchUserWithFollowers}
+            data-testid="mouse-over-avatar-member"
           />
         );
       });
