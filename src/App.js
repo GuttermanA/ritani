@@ -40,9 +40,9 @@ class App extends Component {
   };
 
   componentDidMount() {
-    // if (process.env.NODE_ENV === "development") {
-    //   this.setState({ username: "" }, this.fetchUserWithFollowers);
-    // }
+    if (process.env.NODE_ENV === "development") {
+      this.setState({ username: "jim" }, this.fetchUserWithFollowers);
+    }
   }
 
   fetchUser = async username => {
@@ -98,15 +98,11 @@ class App extends Component {
       return;
     // debugger;
 
-    this.setState({ ...defaultState }, () =>
-      console.log("before user fetch", this.state)
-    );
+    this.setState({ ...defaultState });
 
     await this.fetchUser(newUserName);
-    console.log("before follower fetch", this.state);
     if (!this.state.error.status)
       await this.fetchFollowers(this.state.userData.followers_url);
-    console.log("end of fetch", this.state);
   };
 
   handleSubmit = async event => {
@@ -157,10 +153,10 @@ class App extends Component {
             fetchUserWithFollowers={this.fetchUserWithFollowers}
           />
         ) : (
-          <Container className="fluid message container">
-            <h1> No Followers Yet</h1>
-          </Container>
-        )}
+            <Container className="fluid message container">
+              <h1> No Followers Yet</h1>
+            </Container>
+          )}
       </div>
     );
   }
