@@ -3,8 +3,12 @@ import "./Container.css";
 
 class Container extends Component {
   render() {
-    const { className = "container", children } = this.props;
-    return <div className={className}>{children}</div>;
+    const { className = "container", children, ...rest } = this.props;
+    return (
+      <div className={className} {...rest}>
+        {children}
+      </div>
+    );
   }
 }
 

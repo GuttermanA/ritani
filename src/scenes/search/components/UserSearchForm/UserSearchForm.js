@@ -14,7 +14,9 @@ class UserSearchForm extends Component {
             onChange={handleChange}
             required
           />
-          <Form.Button disabled={disabled}>Search</Form.Button>
+          <Form.Button className="button" disabled={disabled}>
+            Search
+          </Form.Button>
         </Form>
       </Container>
     );

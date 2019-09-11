@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { MouseOverAvatar, LoadFollowersButton } from "./components";
 import { Container } from "components";
-import { Button } from "components";
+import uuid from "uuid/v4";
 
 class FollowerList extends Component {
   render() {
@@ -14,19 +14,20 @@ class FollowerList extends Component {
           alt={`${login} follower avatar`}
           url={url}
           followersURL={followers_url}
+          key={uuid()}
         />
       );
     });
+
     return (
-      <div>
+      <Fragment>
         <Container className="fluid container">{followers}</Container>
-        {followerData.length && (
-          <LoadFollowersButton
-            lastPage={lastPage}
-            loadMoreFollowers={loadMoreFollowers}
-          />
-        )}
-      </div>
+        <LoadFollowersButton
+          lastPage={lastPage}
+          loadMoreFollowers={loadMoreFollowers}
+        />
+        {children}
+      </Fragment>
     );
   }
 }

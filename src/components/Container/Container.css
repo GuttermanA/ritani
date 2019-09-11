@@ -5,11 +5,19 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  text-align: center;
   padding: 1rem;
 }
 
-.center.container {
-  text-align: center;
+.message.container {
+  background-color: #f8f8f9;
+  border-color: black;
+  border-style: solid;
+  border-radius: 25px;
+  border-color: #6c6c6c;
+  max-width: 85%;
+  border-width: thin;
+  color: #6c6c6c;
 }
 
 .menu.container {
@@ -18,6 +26,22 @@
 
 .fluid.container {
   max-width: 100%;
+}
+
+.sticky.container {
+  position: sticky;
+  top: 0;
+  border-bottom: solid #6c6c6c;
+}
+
+.grid {
+  padding: 1rem;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1.2fr);
+  grid-auto-rows: 45%;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
 }
 
 /* .inline.container {

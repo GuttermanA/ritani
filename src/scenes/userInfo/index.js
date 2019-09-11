@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { MetaData } from "./components";
 import { Container, Image } from "components";
-import { isObjectWithKeys } from "lib";
 
 class UserInfo extends Component {
   render() {

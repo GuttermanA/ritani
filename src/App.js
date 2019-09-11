@@ -1,17 +1,10 @@
-import React, { Component } from "react";
+import React, { Component, Fragment, useEffect, useState } from "react";
 import { octokit } from "api";
 import { Search, FollowerList, UserInfo } from "scenes";
-import { Error, Button, Container } from "components";
+import { Error, Container } from "components";
 import { isObjectWithKeys, getSearchParamValue } from "lib";
 import parse from "parse-link-header";
 import "./App.css";
-
-const followersPerPage = 30;
-
-const calcRemaingingPages = (page, followers) => {
-  const pagesRequired = Math.ceil(followers / followersPerPage);
-  return pagesRequired - page;
-};
 
 const defaultState = {
   username: "",
@@ -31,12 +24,26 @@ const defaultState = {
 
 class App extends Component {
   state = defaultState;
+  pageBottomRef = React.createRef();
 
-  componentDidMount = () => {
+  scrollToBottom() {
+    this.pageBottomRef.current.scrollIntoView({ behavior: "smooth" });
+  }
+
+  componentDidMount() {
+    this.scrollToBottom();
     if (process.env.NODE_ENV === "development") {
       this.setState({ username: "jim" }, this.handleSubmit);
     }
-  };
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    this.scrollToBottom();
+    // if (prevState.followers.length !== this.state.followers.length) {
+    //   this.scrollToBottom();
+    // }
+    // this.scrollToBottom();
+  }
 
   fetchUser = async () => {
     await octokit.users
@@ -55,38 +62,7 @@ class App extends Component {
       .finally(() => console.log(this.state));
   };
 
-  // fetchFollowers = () => {
-  //   octokit.users
-  //     .listFollowersForUser({
-  //       username: this.state.username,
-  //       page: this.state.followers.currentPage
-  //     })
-  //     .then(res => {
-  //       console.log(res.headers.link);
-  //       const parsedLinkHeader = parse(res.headers.link);
-  //       console.log(parsedLinkHeader);
-  //       const newState = {
-  //         ...this.state,
-  //         followers: {
-  //           data: this.state.followers.data.concat(res.data),
-  //           currentPage: getSearchParamValue(res.url, "page"),
-  //           nextPageURL: parsedLinkHeader.next && parsedLinkHeader.next.url,
-  //           lastPageURL: parsedLinkHeader.last && parsedLinkHeader.last.url
-  //         }
-  //       };
-  //       this.setState(newState);
-  //     })
-  //     .catch(error =>
-  //       this.setState({
-  //         ...this.state,
-  //         error: { status: true, code: error.status, message: error.message }
-  //       })
-  //     )
-  //     .finally(() => console.log(this.state));
-  // };
-
   fetchFollowers = async url => {
-    // const followersPath = new URL(url).pathname;
     await octokit
       .request(`GET ${url}`)
       .then(res => {
@@ -113,11 +89,13 @@ class App extends Component {
 
   handleSubmit = async event => {
     event && event.preventDefault();
-    this.setState({ disabled: true });
+
+    this.setState({ ...defaultState, disabled: true });
     await this.fetchUser();
     this.setState({ disabled: false });
     if (!this.state.error.status)
       await this.fetchFollowers(this.state.userData.followers_url);
+    this.setState({ disabled: false });
   };
 
   handleChange = event => {
@@ -134,13 +112,13 @@ class App extends Component {
     );
   };
 
-  loadMoreFollowers = event => {
+  loadMoreFollowers = async event => {
     event && event.preventDefault();
     console.log("Loading more...");
     // const { links } = this.state.followers;
     const nextURL =
       this.state.followers.links.next && this.state.followers.links.next.url;
-    nextURL && this.fetchFollowers(nextURL);
+    if (nextURL) await this.fetchFollowers(nextURL);
   };
 
   render() {
@@ -150,22 +128,32 @@ class App extends Component {
     );
     console.log(lastPage);
     return (
-      <div>
-        <Search
-          handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-          disabled={disabled}
-        />
+      <Fragment>
+        <div className="sticky-top">
+          <Search
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+            disabled={disabled}
+          />
+        </div>
         {error.status && <Error code={error.code} message={error.message} />}
         {isObjectWithKeys(userData) && <UserInfo userData={userData} />}
-        {followers.data.length && (
+        {followers.data.length ? (
           <FollowerList
             followerData={followers.data}
             lastPage={lastPage}
             loadMoreFollowers={this.loadMoreFollowers}
           />
+        ) : (
+          <Container className="message container">
+            <h1> No Followers Yet</h1>
+          </Container>
         )}
-      </div>
+        <div
+          style={{ float: "left", clear: "both" }}
+          ref={this.pageBottomRef}
+        />
+      </Fragment>
     );
   }
 }

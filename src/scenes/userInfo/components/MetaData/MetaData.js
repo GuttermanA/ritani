@@ -6,7 +6,7 @@ class MetaData extends Component {
     const { userData, ...rest } = this.props;
     const { login, followers, blog } = userData;
     return (
-      <List className="list none">
+      <List className="list none" style={{ fontSize: "1.5rem" }}>
         <List.Item style={{ fontWeight: "bold" }}>{login}</List.Item>
         <List.Item>Followers - {followers}</List.Item>
         <List.Item>
