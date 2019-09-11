@@ -4,6 +4,7 @@ import "@testing-library/jest-dom/extend-expect";
 import LoadFollowersButton from "../LoadFollowersButton";
 
 describe("<LoadFollowersButton/>", () => {
+  afterAll(cleanup);
   it("renders correctly", () => {
     const component = render(<LoadFollowersButton />);
     expect(component).toMatchSnapshot();
@@ -14,11 +15,11 @@ describe("<LoadFollowersButton/>", () => {
     const { queryByTestId, queryByText } = render(
       <LoadFollowersButton lastPage={true} />
     );
-    expect(queryByTestId("load-followers-button")).toHaveAttribute("disabled");
+    expect(queryByTestId("load-followers-button")).toBeDisabled();
     expect(queryByText("End of Followers")).toBeTruthy();
   });
 
-  it("calls loadMoreFollowers onClick", () => {
+  it("calls #loadMoreFollowers onClick", () => {
     const loadMoreFollowers = jest.fn(() => Promise.resolve);
     const { queryByTestId, queryByText } = render(
       <LoadFollowersButton
@@ -28,6 +29,7 @@ describe("<LoadFollowersButton/>", () => {
     );
 
     expect(queryByText("Load")).toBeTruthy();
+    expect(queryByTestId("load-followers-button")).toBeEnabled();
     fireEvent.click(queryByTestId("load-followers-button"));
     expect(loadMoreFollowers).toHaveBeenCalledTimes(1);
   });
