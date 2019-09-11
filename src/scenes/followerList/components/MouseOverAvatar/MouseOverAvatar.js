@@ -40,7 +40,13 @@ class MouseOverAvatar extends Component {
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
       >
-        <Image className="avatar" src={src} alt={alt} {...rest} />
+        <Image
+          data-testid="follower-avatar"
+          className="avatar"
+          src={src}
+          alt={alt}
+          {...rest}
+        />
         {this.state.showButton && (
           <Button
             data-testid="follower-button"

@@ -6,15 +6,19 @@ Object {
   "baseElement": <body>
     <div>
       <input
+        class="form field"
         required=""
         type="text"
+        value=""
       />
     </div>
   </body>,
   "container": <div>
     <input
+      class="form field"
       required=""
       type="text"
+      value=""
     />
   </div>,
   "debug": [Function],

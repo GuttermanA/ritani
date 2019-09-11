@@ -29,6 +29,7 @@ Array [
       <img
         alt="Vkopensource follower avatar"
         className="avatar"
+        data-testid="follower-avatar"
         src="https://avatars2.githubusercontent.com/u/48538853?v=4"
       />
     </div>
@@ -41,6 +42,7 @@ Array [
       <img
         alt="stvtortora follower avatar"
         className="avatar"
+        data-testid="follower-avatar"
         src="https://avatars3.githubusercontent.com/u/32438308?v=4"
       />
     </div>
