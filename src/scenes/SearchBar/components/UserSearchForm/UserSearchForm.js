@@ -3,13 +3,7 @@ import { Form } from "components";
 
 class UserSearchForm extends Component {
   render() {
-    const {
-      handleSubmit,
-      handleChange,
-      disabled,
-      username,
-      ...rest
-    } = this.props;
+    const { handleSubmit, handleChange, disabled, username } = this.props;
     return (
       <Form onSubmit={handleSubmit} data-testid="search-form">
         <Form.Label fieldName="username" data-testid="search-label">

@@ -18,6 +18,7 @@ class Search extends Component {
           href="https://github.com/GuttermanA/ritani"
           target="_blank"
           rel="noopener noreferrer"
+          data-testid="github-repo-link"
         >
           Github Repository
         </a>
