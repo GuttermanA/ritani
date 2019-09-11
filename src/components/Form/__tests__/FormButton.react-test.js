@@ -1,5 +1,5 @@
 import React from "react";
-import { cleanup, render } from "utils/test-utils";
+import { render, fireEvent, cleanup } from "@testing-library/react";
 import FormButton from "../FormButton";
 
 describe("<FormButton/>", () => {

@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LoadFollowersButton/> renders correctly 1`] = `
+Array [
+  <button
+    className="button centered"
+    type="submit"
+  >
+    Load
+  </button>,
+  <div />,
+]
+`;

@@ -4,12 +4,7 @@ import Form from "../Form";
 
 describe("<Form/>", () => {
   it("renders correctly", () => {
-    const component = renderer.create(
-      <Form>
-        <Form.Field />
-        <Form.Button />
-      </Form>
-    );
+    const component = renderer.create(<Form />);
     expect(component).toMatchSnapshot();
   });
 });

@@ -1,20 +1,6 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import "./Button.css";
 class Button extends Component {
-  static propTypes = {
-    as: PropTypes.elementType,
-    action: PropTypes.string,
-    children: PropTypes.node,
-    className: PropTypes.string,
-    disabled: PropTypes.bool,
-    onClick: PropTypes.func
-  };
-
-  static defaultProps = {
-    as: "button"
-  };
-
   render() {
     // const ElementType = getElementType(Button, this.props);
     const {
@@ -23,7 +9,8 @@ class Button extends Component {
       type = "submit",
       name,
       disabled,
-      onClick
+      onClick,
+      ...rest
     } = this.props;
     return (
       <button
@@ -32,6 +19,7 @@ class Button extends Component {
         className={className}
         disabled={disabled}
         onClick={onClick}
+        {...rest}
       >
         {children}
       </button>

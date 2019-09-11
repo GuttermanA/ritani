@@ -35,6 +35,7 @@ class MouseOverAvatar extends Component {
     const { disabled } = this.props;
     return (
       <Container
+        data-testid="avatar-container"
         className="avatar-container"
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
@@ -42,6 +43,7 @@ class MouseOverAvatar extends Component {
         <Image className="avatar" src={src} alt={alt} {...rest} />
         {this.state.showButton && (
           <Button
+            data-testid="follower-button"
             className="button absolute"
             onClick={this.handleClick}
             disabled={disabled}

@@ -22,6 +22,7 @@ Array [
   >
     <div
       className="avatar-container"
+      data-testid="avatar-container"
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
     >
@@ -33,6 +34,7 @@ Array [
     </div>
     <div
       className="avatar-container"
+      data-testid="avatar-container"
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
     >

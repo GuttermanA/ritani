@@ -3,15 +3,5 @@
 exports[`<Form/> renders correctly 1`] = `
 <form
   as="form"
->
-  <input
-    className="form field"
-    required={true}
-    type="text"
-  />
-  <button
-    className="form button"
-    type="submit"
-  />
-</form>
+/>
 `;
