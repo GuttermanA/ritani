@@ -3,9 +3,10 @@ import { UserSearchForm } from "./components";
 
 class Search extends Component {
   render() {
-    const { disabled, handleChange, handleSubmit } = this.props;
+    const { disabled, handleChange, handleSubmit, username } = this.props;
     return (
       <UserSearchForm
+        username={username}
         handleSubmit={handleSubmit}
         handleChange={handleChange}
         disabled={disabled}

@@ -18,7 +18,7 @@ class FollowerList extends Component {
         <MouseOverAvatar
           src={avatar_url}
           alt={`${login} follower avatar`}
-          id={login.toLowerCase()}
+          id={login}
           url={url}
           followersURL={followers_url}
           key={uuid()}
@@ -29,7 +29,7 @@ class FollowerList extends Component {
 
     return (
       <Fragment>
-        <Container className="fluid container">{followers}</Container>
+        <Container className="container">{followers}</Container>
         <LoadFollowersButton
           lastPage={lastPage}
           loadMoreFollowers={loadMoreFollowers}

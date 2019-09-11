@@ -8,7 +8,7 @@ class UserInfo extends Component {
     const { avatar_url, login } = userData;
 
     return (
-      <Container>
+      <Container className="user-info container">
         <Image
           className="avatar"
           src={avatar_url}

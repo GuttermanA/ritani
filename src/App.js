@@ -44,8 +44,8 @@ class App extends Component {
           ...this.state,
           error: { status: true, code: error.status, message: error.message }
         })
-      )
-      .finally(() => console.log(this.state));
+      );
+    // .finally(() => console.log(this.state));
   };
 
   fetchFollowers = async url => {
@@ -69,8 +69,8 @@ class App extends Component {
           ...this.state,
           error: { status: true, code: error.status, message: error.message }
         })
-      )
-      .finally(() => console.log(this.state));
+      );
+    // .finally(() => console.log(this.state));
   };
 
   fetchUserWithFollowers = async username => {
@@ -112,22 +112,23 @@ class App extends Component {
   };
 
   render() {
-    const { userData, followers, error, disabled } = this.state;
+    const { userData, followers, error, disabled, username } = this.state;
     const lastPage = !(
       this.state.followers.links && this.state.followers.links.next
     );
-    console.log(lastPage);
     return (
-      <Container className="main-container">
+      <div>
         <div className="sticky-top">
           <Search
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
             disabled={disabled}
+            username={username}
           />
-          {error.status && <Error code={error.code} message={error.message} />}
           {isObjectWithKeys(userData) && <UserInfo userData={userData} />}
         </div>
+        {error.status && <Error code={error.code} message={error.message} />}
+
         {followers.data.length ? (
           <FollowerList
             followerData={followers.data}
@@ -136,14 +137,15 @@ class App extends Component {
             fetchUserWithFollowers={this.fetchUserWithFollowers}
           />
         ) : (
-          <Container className="message container">
+          <Container className="fluid message container">
             <h1> No Followers Yet</h1>
           </Container>
         )}
-        <footer></footer>
-      </Container>
+      </div>
     );
   }
 }
 
 export default App;
+
+// <Container className="fluid footer container"></Container>

@@ -1,12 +1,3 @@
-/* .follower-container {
-  position: relative;
-  width: 50%;
-  padding: 1rem;
-} */
-
-/* .follower {
-  position: relative;
-} */
 .button.absolute {
   position: absolute;
   top: 50%;
@@ -17,13 +8,13 @@
 
 div.avatar-container {
   position: relative;
-  width: 11rem;
+  width: 9rem;
   height: auto;
-  padding: 0.5rem;
+  padding: 0.1rem;
+  flex: 1 0 15%;
 }
 
 img.avatar {
   border-radius: 50%;
-  width: 100%;
-  height: auto;
+  max-width: 8.5rem;
 }

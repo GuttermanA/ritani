@@ -26,15 +26,16 @@ code {
 }
 
 div.sticky-top {
-  position: -webkit-sticky; /* Safari */
   position: sticky !important;
   top: 0 !important;
+  z-index: 1 !important;
 }
 
 footer {
   position: absolute;
+  left: 0;
   bottom: 0;
-  width: 100%;
+  right: 0;
   background-color: black;
   padding: 2rem;
 }

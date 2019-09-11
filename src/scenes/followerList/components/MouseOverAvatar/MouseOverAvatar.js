@@ -10,11 +10,10 @@ class MouseOverAvatar extends Component {
   };
 
   handleMouseLeave = event => {
-    this.setState({ showButton: false }, () => console.log(this.state));
+    this.setState({ showButton: false });
   };
 
   handleClick = async event => {
-    console.log("submitted");
     event.preventDefault();
     event.stopPropagation();
     const { id, fetchUserWithFollowers } = this.props;
@@ -24,7 +23,8 @@ class MouseOverAvatar extends Component {
   };
 
   render() {
-    const { src, alt, login, url, followersURL, ...rest } = this.props;
+    const { src, alt, id, url, followersURL, ...rest } = this.props;
+    const { disabled } = this.props;
     return (
       <Container
         className="avatar-container"
@@ -33,8 +33,12 @@ class MouseOverAvatar extends Component {
       >
         <Image className="avatar" src={src} alt={alt} {...rest} />
         {this.state.showButton && (
-          <Button className="button absolute" onClick={this.handleClick}>
-            Search
+          <Button
+            className="button absolute"
+            onClick={this.handleClick}
+            disabled={disabled}
+          >
+            {id}
           </Button>
         )}
       </Container>
