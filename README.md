@@ -50,6 +50,10 @@ Features:
 
 In the remainder of this README I will describe my design decisions regarding app structure, styling, and testing.
 
+## Authentication
+
+Github's API requires authentication otherwise it throttles your requests to 50 per hour. While it is possible to register an app with Github, I decided to created a read only personal access token for the purpose of this project as I expect it to be deployed to a public facing URL for a limited time. The auth token is stored in Heroku's config vars.
+
 ### App Structure
 
 Since this is a React app, project structure is up to the user. In this case, I chose a slightly more complicated structure to demonstrate my understanding of separation of concerns and how to lay the foundation for expanding to a much larger application without the headache of refactoring in the future.
@@ -159,3 +163,7 @@ Basic functionality:
 - Follower avatars
   - Can be moused over to display a button with their Github username
   - Clicking the button will fire off a search for that user, replacing the results in the current window
+
+### Testing
+
+Testing was limited to functional testing of the higher level components due to time and scope constraints. Jest with @testing-library/react were used to mock and test components. Tests can be found in the `__tests__` folders of their related component.
