@@ -20,7 +20,7 @@ const LoadFollowersButton = props => {
   useEffect(scrollToBottom);
 
   return (
-    <div>
+    <Fragment>
       <Button
         className="button centered"
         disabled={lastPage}
@@ -29,7 +29,7 @@ const LoadFollowersButton = props => {
         {content}
       </Button>
       <div ref={followersEndRef} />
-    </div>
+    </Fragment>
   );
 };
 
