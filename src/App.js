@@ -1,4 +1,4 @@
-import React, { Component, Fragment, useEffect, useState } from "react";
+import React, { Component } from "react";
 import { octokit } from "api";
 import { Search, FollowerList, UserInfo } from "scenes";
 import { Error, Container } from "components";
@@ -24,7 +24,6 @@ const defaultState = {
 
 class App extends Component {
   state = defaultState;
-  pageBottomRef = React.createRef();
 
   componentDidMount() {
     if (process.env.NODE_ENV === "development") {
@@ -125,7 +124,6 @@ class App extends Component {
           {error.status && <Error code={error.code} message={error.message} />}
           {isObjectWithKeys(userData) && <UserInfo userData={userData} />}
         </div>
-
         {followers.data.length ? (
           <FollowerList
             followerData={followers.data}
@@ -137,7 +135,6 @@ class App extends Component {
             <h1> No Followers Yet</h1>
           </Container>
         )}
-
         <footer></footer>
       </Container>
     );

@@ -13,6 +13,7 @@ class UserInfo extends Component {
           className="avatar"
           src={avatar_url}
           alt={`${login} user avatar`}
+          style={{ width: "25%" }}
         />
         <MetaData userData={userData} />
       </Container>

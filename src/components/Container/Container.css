@@ -3,14 +3,14 @@
   overflow: hidden;
   display: block;
   position: relative;
-  padding-bottom: 100px; /* height of your footer */
+  padding-bottom: 0px; /* height of your footer */
 }
 
 .container {
   margin: auto;
   max-width: 50%;
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   justify-content: center;
   align-items: center;
   text-align: center;
