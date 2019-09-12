@@ -9,7 +9,7 @@ describe("octokit rest", () => {
     expect(response.status).toBe(200);
   });
 
-  test("Searching for an empty string throws a 404 not found error", async () => {
+  test.skip("Searching for an empty string throws a 404 not found error", async () => {
     expect(
       Promise.resolve(
         octokit.users.getByUsername({

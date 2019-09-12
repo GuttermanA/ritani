@@ -1,9 +1,8 @@
 import React from "react";
-import { render, cleanup, mockAppState, TestRenderer } from "utils/test-utils";
-
+import { render, cleanup } from "utils/test-utils";
 import "@testing-library/jest-dom/extend-expect";
 import App from "../App";
-import { octokit } from "api";
+// import { octokit } from "api";
 
 describe("<App/>", () => {
   afterEach(cleanup);
