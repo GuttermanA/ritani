@@ -168,4 +168,6 @@ Basic functionality:
 
 ### Testing
 
-Testing was limited to functional testing of the higher level components due to time and scope constraints. Jest with @testing-library/react were used to mock and test components. Tests can be found in the `__tests__` folders of their related component.
+Testing was limited to unit testing of the scene components. Jest with @testing-library/react were used to mock and test components. Tests can be found in the `__tests__` folders of their related component.
+
+After I had written most of the tests, I discovered that @testing-library/react did not fulfill my needs for testing the App component with different data states. However, this would not be an issue in the long run if this app was expanded since I would be using a redux store for the data which can easily be mocked.
