@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { octokit } from "api";
 import { SearchBar, FollowerList, UserInfo } from "scenes";
-import { Error, Container } from "components";
+import { ErrorMessage, Container } from "components";
 import { isObjectWithKeys, getSearchParamValue } from "lib";
 import parse from "parse-link-header";
 
@@ -127,7 +127,9 @@ class App extends Component {
           />
           {isObjectWithKeys(userData) && <UserInfo userData={userData} />}
         </div>
-        {error.status && <Error code={error.code} message={error.message} />}
+        {error.status && (
+          <ErrorMessage code={error.code} message={error.message} />
+        )}
 
         {followers.data.length ? (
           <FollowerList

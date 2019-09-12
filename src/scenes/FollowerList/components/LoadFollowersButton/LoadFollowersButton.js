@@ -15,7 +15,7 @@ const LoadFollowersButton = props => {
           behavior: "smooth",
           inline: "nearest"
         });
-      }, 200);
+      }, 250);
     }
   };
 
