@@ -26,7 +26,7 @@ describe("<App/>", () => {
     });
   });
 
-  /* In below functions I wanted to implented testing of conditiaonal rendering based on state
+  /* In below functions I wanted to implented testing of conditiaonal rendering based on state. I understand that the best tool for this is probably Enzyme but I figured rewriting all of my tests to use Enzyme was outside of the skope of this project
    */
 
   it.skip("has conditionally a conditionally rendering <UserInfo/> component", async () => {
