@@ -22,23 +22,9 @@ const defaultState = {
 };
 
 class App extends Component {
-  state = {
-    username: "",
-    userData: {},
-    followers: {
-      data: [],
-      currentPage: 1,
-      links: {}
-    },
-    disabled: false,
-    error: {
-      status: false,
-      code: null,
-      message: ""
-    }
-  };
+  state = defaultState;
 
-  componentDidMount() {
+  async componentDidMount() {
     if (process.env.NODE_ENV === "development") {
       this.setState({ username: "jim" }, this.fetchUserWithFollowers);
     }
