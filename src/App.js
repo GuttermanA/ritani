@@ -82,7 +82,7 @@ class App extends Component {
           error: { status: true, code: error.status, message: error.message }
         })
       );
-    // .finally(() => console.log(this.state.followers.data));
+    // .finally(() => console.log(this.state));
   };
 
   fetchUserWithFollowers = async newUserName => {
@@ -162,5 +162,3 @@ class App extends Component {
 }
 
 export default App;
-
-// <Container className="fluid footer container"></Container>

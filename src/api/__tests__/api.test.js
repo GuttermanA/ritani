@@ -16,6 +16,6 @@ describe("octokit rest", () => {
           username: ""
         })
       )
-    ).resolves.toBe(/404/);
+    ).rejects.toBeTruthy();
   });
 });

@@ -173,21 +173,6 @@ Object {
   "queryByText": [Function],
   "queryByTitle": [Function],
   "rerender": [Function],
-  "state": Object {
-    "disabled": false,
-    "error": Object {
-      "code": null,
-      "message": "",
-      "status": false,
-    },
-    "followers": Object {
-      "currentPage": 1,
-      "data": Array [],
-      "links": Object {},
-    },
-    "userData": Object {},
-    "username": "",
-  },
   "unmount": [Function],
 }
 `;
