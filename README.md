@@ -52,7 +52,7 @@ Features:
 
 In the remainder of this README I will describe my design decisions regarding app structure, styling, and testing.
 
-## Authentication
+### Authentication
 
 Github's API requires authentication otherwise it throttles your requests to 50 per hour. While it is possible to register an app with Github, I decided to created a read only personal access token for the purpose of this project as I expect it to be deployed to a public facing URL for a limited time. The auth token is stored in Heroku's config vars.
 
@@ -109,13 +109,17 @@ The primary folders of the application are `api, lib, components, and scenes`.
 
 Everything is put together in `App.js`. CSS can be found in component folders where it is necessary. General CSS logic can be found in
 
-#### App.js
+### App.js
 
 Ultimately I decided not to use Redux in this application because it would add unnecessary complexity. Therefore, application state has been hoisted into App.js. It contains all of the logic used to connect to the Github API and update the React application state with the response data. State is then passed down via props to the display components.
 
-### Detailed Features Descriptions
+### Testing
 
-In this section I will explain application features in more detail.
+Testing was limited to unit testing of the scene components. Jest with @testing-library/react were used to mock and test components. Tests can be found in the `__tests__` folders of their related component.
+
+After I had written most of the tests, I discovered that @testing-library/react did not fulfill my needs for testing the App component with different data states. However, this would not be an issue in the long run if this app was expanded since I would be using a redux store for the data which can easily be mocked.
+
+### Detailed Features Descriptions
 
 #### Search
 
@@ -136,7 +140,7 @@ Search takes place in three stages:
 
 1. fetchUser
 2. fetchFollowers - if fetchUser resolves successfully
-3. Resolve errors - if any
+3. Resolve errors - if fetchUser does not resolve sucessfully
 
 `fetchUser` uses the `octokit.users.getByUsername` function passing the username. The `followers_url` attribute from the result is then passed to `fetchFollowers`, which uses `octokit.request` method.
 
@@ -165,9 +169,3 @@ Basic functionality:
 - Follower avatars
   - Can be moused over to display a button with their Github username
   - Clicking the button will fire off a search for that user, replacing the results in the current window
-
-### Testing
-
-Testing was limited to unit testing of the scene components. Jest with @testing-library/react were used to mock and test components. Tests can be found in the `__tests__` folders of their related component.
-
-After I had written most of the tests, I discovered that @testing-library/react did not fulfill my needs for testing the App component with different data states. However, this would not be an issue in the long run if this app was expanded since I would be using a redux store for the data which can easily be mocked.
