@@ -2,11 +2,14 @@ import React, { Component } from "react";
 import { Container } from "components";
 import { UserSearchForm } from "./components";
 
-class Search extends Component {
+class SearchBar extends Component {
   render() {
     const { disabled, handleChange, handleSubmit, username } = this.props;
     return (
-      <Container className="menu fluid center container">
+      <Container
+        className="menu fluid center container"
+        data-testid="search-bar-container"
+      >
         <UserSearchForm
           username={username}
           handleSubmit={handleSubmit}
@@ -27,4 +30,4 @@ class Search extends Component {
   }
 }
 
-export default Search;
+export default SearchBar;

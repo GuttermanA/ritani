@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  render,
-  cleanup,
-  fireEvent,
-  waitForElement
-} from "@testing-library/react";
-import ReactTestUtils from "react-dom/test-utils";
+import { render, cleanup, fireEvent, ReactTestUtils } from "utils/test-utils";
 import "@testing-library/jest-dom/extend-expect";
 import UserSearchForm from "../UserSearchForm";
 

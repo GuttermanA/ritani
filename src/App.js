@@ -81,7 +81,7 @@ class App extends Component {
           ...this.state,
           error: { status: true, code: error.status, message: error.message }
         })
-      )
+      );
     // .finally(() => console.log(this.state.followers.data));
   };
 
@@ -131,8 +131,8 @@ class App extends Component {
       this.state.followers.links && this.state.followers.links.next
     );
     return (
-      <div>
-        <div className="sticky-top">
+      <div data-testid="app">
+        <div className="sticky-top" data-testid="sticky-div">
           <SearchBar
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
@@ -152,10 +152,10 @@ class App extends Component {
             fetchUserWithFollowers={this.fetchUserWithFollowers}
           />
         ) : (
-            <Container className="fluid message container">
-              <h1> No Followers Yet</h1>
-            </Container>
-          )}
+          <Container className="fluid message container">
+            <h1> No Followers Yet</h1>
+          </Container>
+        )}
       </div>
     );
   }
